@@ -1,4 +1,4 @@
-# follow-long with https://www.fullstackpython.com/blog/build-first-slack-bot-python.html
+# follow-along with https://www.fullstackpython.com/blog/build-first-slack-bot-python.html
 
 import os
 import time
@@ -12,7 +12,7 @@ veganbot_id = None
 
 RTM_READ_DELAY = 1 
 EXAMPLE_COMMAND = 'do'
-MENTION_REGEX = '^<@(|[WU].+?)>(.*)'
+MENTION_REGEX = "^<@(|[WU].+?)>(.*)"
 
 # parse events from Slack RTM API to locate bot commands
 def parse_bot_commands(slack_events):
@@ -20,8 +20,8 @@ def parse_bot_commands(slack_events):
 		if event['type'] == 'message' and not 'subtype' in event:
 			user_id, message = parse_direct_mention(event['text'])
 			if user_id == veganbot_id:
-				return message, event['channel']
-		return None, None
+				return (message, event['channel'])
+	return (None, None)
 
 # locates direct mentions and returns user ID of mentioned
 def parse_direct_mention(message_text):
