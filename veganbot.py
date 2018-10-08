@@ -11,7 +11,7 @@ slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
 veganbot_id = None
 
 RTM_READ_DELAY = 1 
-EXAMPLE_COMMAND = 'do'
+FACT_COMMAND = 'fact please'
 MENTION_REGEX = "^<@(|[WU].+?)>(.*)"
 
 # parse events from Slack RTM API to locate bot commands
@@ -31,12 +31,12 @@ def parse_direct_mention(message_text):
 # executes bot command
 def handle_command(command, channel):
 	# default response
-	default_response = f'Sorry there. Not sure what you mean. Try {EXAMPLE_COMMAND}'
+	default_response = f'Sorry there. Not sure what you mean. Try *{FACT_COMMAND}*'
 
 	# find and executes the command
 	response = None
-	if command.startswith(EXAMPLE_COMMAND):
-		response = 'Sure...'
+	if command.startswith(FACT_COMMAND):
+		response = 'Veganism saves over 200 animals a year per person!'
 
 	# sends the response back to the channel
 	slack_client.api_call(
@@ -56,4 +56,6 @@ if __name__ == '__main__':
 			time.sleep(RTM_READ_DELAY)
 	else:
 		print('Connection failed. Exception traceback printed above.')
+
+
 
