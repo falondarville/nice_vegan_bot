@@ -11,4 +11,11 @@ facts = Table('facts', metadata,
 	Column('created_on', DateTime(), default=datetime.now)
 	)
 
-metadata.create_all(engine)
+# metadata.create_all(engine)
+
+ins = facts.insert().values(
+	content = 'Being vegan saves over 200 animals a year.'
+)
+
+conn = engine.connect()
+r = conn.execute(ins)
