@@ -36,6 +36,7 @@ def handle_command(command, channel):
 	# find and executes the command
 	response = None
 	if command.startswith(FACT_COMMAND):
+		# query the database and grab a random fact
 		response = 'Veganism saves over 200 animals a year per person!'
 
 	# sends the response back to the channel
