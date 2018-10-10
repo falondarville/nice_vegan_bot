@@ -4,6 +4,7 @@ import os
 import time
 import re
 from slackclient import SlackClient
+from db_table import result
 
 # instantiate Slack client
 slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
@@ -37,7 +38,7 @@ def handle_command(command, channel):
 	response = None
 	if command.startswith(FACT_COMMAND):
 		# query the database and grab a random fact
-		response = 'Veganism saves over 200 animals a year per person!'
+		response = result
 
 	# sends the response back to the channel
 	slack_client.api_call(

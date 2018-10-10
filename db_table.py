@@ -20,7 +20,7 @@ s = select([facts])
 
 r = conn.execute(s)
 row = r.fetchone()
-print(row['content'])
+result = row['content']
 
 # r = conn.execute(ins, [
 # 	{"content": "Processed meat is a carcinogenic according to the World Health Organization."},
