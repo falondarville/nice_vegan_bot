@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, MetaData, insert, select, DateTime, Integer, Table, String, Column, Text
+from sqlalchemy import create_engine, MetaData, insert, func, select, DateTime, Integer, Table, String, Column, Text
 from datetime import datetime
 
 metadata = MetaData()
@@ -14,13 +14,13 @@ facts = Table('facts', metadata,
 # metadata.create_all(engine)
 # ins = insert(facts)
 
-conn = engine.connect()
-
-s = select([facts])
-
-r = conn.execute(s)
-row = r.fetchone()
-result = row['content']
+def pick_facts():
+	conn = engine.connect()
+	s = select([facts]).order_by(func.rand())
+	r = conn.execute(s)
+	row = r.fetchone()
+	result = row['content']
+	return result
 
 # r = conn.execute(ins, [
 # 	{"content": "Processed meat is a carcinogenic according to the World Health Organization."},
